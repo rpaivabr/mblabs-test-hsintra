@@ -194,6 +194,23 @@
     <div class="content-wrapper" style="min-height: 837px;">
       <!-- telas -->
       <router-outlet></router-outlet>
+      <div class="row" *ngFor="let ingresso of ingressos; let i = index;">
+        <div class="col-lg-4 col-offset-4">
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                <qrcode [qrdata]="ingresso.uid" [size]="128" [level]="'M'" colordark="#120a8f"></qrcode>
+              </h3>
+            </div>
+            <div class="box-body">
+              Ingresso {{ i + 1 }} - {{ ingresso.evento.titulo }} ({{ ingresso.evento.data }})
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+      </div>
+
+
     </div>
     <!-- /.content-wrapper -->
     <!-- <app-footer></app-footer> -->
