@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -11,10 +12,21 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CadastroUsuarioComponent } from './components/cadastro-usuario/cadastro-usuario.component';
+import { CadastroEventoComponent } from './components/cadastro-evento/cadastro-evento.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { ListarEventosComponent } from './components/listar-eventos/listar-eventos.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CadastroUsuarioComponent,
+    CadastroEventoComponent,
+    HeaderComponent,
+    HomeComponent,
+    ListarEventosComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +40,7 @@ import { AppComponent } from './app.component';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
