@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './components/cadastro-usuario/cadastro-usuario.component';
 import { CadastroEventoComponent } from './components/cadastro-evento/cadastro-evento.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
 import { ListarEventosComponent } from './components/listar-eventos/listar-eventos.component';
 import { ListarIngressosComponent } from './components/listar-ingressos/listar-ingressos.component';
 
@@ -26,7 +25,6 @@ import { ListarIngressosComponent } from './components/listar-ingressos/listar-i
     CadastroUsuarioComponent,
     CadastroEventoComponent,
     HeaderComponent,
-    HomeComponent,
     ListarEventosComponent,
     ListarIngressosComponent
   ],

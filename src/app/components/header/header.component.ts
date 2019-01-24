@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AuthService } from 'src/app/services/auth.service';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Router } from '@angular/router';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-header',
@@ -12,13 +11,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  user: any;
+  user: User;
   admin = false;
   tickets = 0;
 
   constructor(private auth: AuthService,
-              private firestore: FirestoreService,
-              private router: Router) { }
+              private firestore: FirestoreService) { }
 
   ngOnInit() {
     this.auth.loggedUser$.subscribe(user => {

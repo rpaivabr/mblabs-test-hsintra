@@ -3,6 +3,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { of } from 'rxjs';
+import { User } from '../../models/user';
+import { Ticket } from '../../models/ticket';
 
 @Component({
   selector: 'app-listar-ingressos',
@@ -11,24 +13,16 @@ import { of } from 'rxjs';
 })
 export class ListarIngressosComponent implements OnInit {
 
-  user: any;
-  tickets = [];
+  loggedUser: User;
+  tickets: Ticket[] = [];
 
   constructor(private firestore: FirestoreService,
               private auth: AuthService) { }
 
   ngOnInit() {
-    this.auth.user$.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.firestore.getByAuthUid(user.uid);
-        } else {
-          return of(null);
-        }
-      })
-    ).subscribe(user => {
+    this.auth.loggedUser$.subscribe(user => {
       if (user) {
-        this.user = user;
+        this.loggedUser = user;
         this.firestore.getTicketByEmail(user.email).subscribe(tickets => this.tickets = tickets);
       }
     });
