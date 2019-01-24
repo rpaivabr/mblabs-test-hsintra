@@ -3,6 +3,6 @@ export interface Event {
     nome: string;
     local: string;
     autor: string;
-    data: Date;
+    data: any;
     participantes: number;
 }

@@ -5,14 +5,18 @@
   </section>
   <section class="content">
 
-    <div class="box box-info" *ngFor="let event of events">
-      <div class="box-header with-border">
-        <h3 class="box-title">Lista de Eventos</h3>
-        <div class="box-body">
-          Evento: {{ event.nome }}<br>
-          Local: {{ event.local }}<br>
-          Data: {{ event.data.seconds * 1000 | date : 'dd/MM/yyyy HH:mm' }}
-          <button (click)="createTicket(event)" class="btn btn-info pull-right">Comprar</button>
+    <div class="row">
+      <div class="col-lg-6 col xs-12" *ngFor="let event of events">
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Lista de Eventos</h3>
+            <div class="box-body">
+              Evento: {{ event.nome }}<br>
+              Local: {{ event.local }}<br>
+              Data: {{ event.data.seconds * 1000 | date : 'dd/MM/yyyy HH:mm' }}
+              <button (click)="createTicket(event)" class="btn btn-info pull-right">Comprar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
