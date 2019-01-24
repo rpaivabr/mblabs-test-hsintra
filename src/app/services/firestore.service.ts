@@ -27,6 +27,20 @@ export class FirestoreService {
       );
   }
 
+  getEventsByDate(): Observable<any[]> {
+    this.collection = this.db.collection('eventos', ref => ref.orderBy('data'));
+    return this.collection
+      .snapshotChanges().pipe(
+        map(changes => {
+          return changes.map(a => {
+            const data = a.payload.doc.data() as any;
+            const uid = a.payload.doc.id;
+            return { uid, ...data };
+          });
+        })
+      );
+  }
+
   getTasksByData(data: string, path: string): Observable<any[]> {
     return this.getAll(path).pipe(
       map(objs => {
@@ -39,6 +53,14 @@ export class FirestoreService {
     return this.getAll(path).pipe(
       map(objs => {
         return objs.filter(obj => obj.email === email);
+      })
+    );
+  }
+
+  getTicketByEmail(email: string): Observable<any[]> {
+    return this.getAll('ingressos').pipe(
+      map(objs => {
+        return objs.filter(obj => obj.participante.email === email);
       })
     );
   }
@@ -78,7 +100,7 @@ export class FirestoreService {
   getByAdmin(uid: string): Observable<any> {
     return this.getAll('usuarios').pipe(
       map(objs => {
-        return objs.filter(obj => (obj.authUid === uid && obj.perfil === 'admin'))[0];
+        return objs.filter(obj => (obj.authUid === uid && obj.perfil === 'company'))[0];
       })
     );
   }

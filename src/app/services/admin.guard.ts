@@ -14,6 +14,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.auth.isAdmin().pipe(tap(isAdmin => {
+      console.log(isAdmin);
       if (!isAdmin) { this.auth.logout(); }
     }));
   }

@@ -26,7 +26,7 @@ export class CadastroEventoComponent implements OnInit {
       nome: new FormControl('', Validators.required),
       data: new FormControl('', Validators.required),
       local: new FormControl('', Validators.required),
-      seats: new FormControl(0, Validators.required),
+      participantes: new FormControl(0, Validators.required),
     });
   }
 
@@ -43,7 +43,7 @@ export class CadastroEventoComponent implements OnInit {
     const minutos = +this.eventForm.value.data.substr(10, 2);
     const data = new Date(ano, mes, dia, horas, minutos);
     this.eventForm.value.data = data;
-    this.eventForm.value.owner = 'r.paivabr@gmail.com'; // email logado
+    this.eventForm.value.autor = 'r.paivabr@gmail.com'; // email logado
     this.eventForm.value.uid = this.firestore.getUid();
     // gravar usuario no banco
     this.firestore.add(this.eventForm.value, 'eventos').subscribe(() => this.router.navigate(['eventos']));

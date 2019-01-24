@@ -17,6 +17,7 @@ import { CadastroEventoComponent } from './components/cadastro-evento/cadastro-e
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListarEventosComponent } from './components/listar-eventos/listar-eventos.component';
+import { ListarIngressosComponent } from './components/listar-ingressos/listar-ingressos.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ListarEventosComponent } from './components/listar-eventos/listar-event
     CadastroEventoComponent,
     HeaderComponent,
     HomeComponent,
-    ListarEventosComponent
+    ListarEventosComponent,
+    ListarIngressosComponent
   ],
   imports: [
     BrowserModule,
