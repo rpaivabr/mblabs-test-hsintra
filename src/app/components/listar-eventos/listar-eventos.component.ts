@@ -24,10 +24,10 @@ export class ListarEventosComponent implements OnInit {
 
   ngOnInit() {
     this.auth.loggedUser$.subscribe(user => {
+      this.firestore.getEventsByDate().subscribe(events => this.events = events);
       if (user) {
         this.firestore.getByEmail(user.email, 'usuarios').subscribe(loggedUser => this.loggedUser = loggedUser);
         this.firestore.getTicketsByEmail(user.email).subscribe(tickets => this.tickets = tickets);
-        this.firestore.getEventsByDate().subscribe(events => this.events = events);
       }
     });
   }
