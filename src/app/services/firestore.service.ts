@@ -52,7 +52,7 @@ export class FirestoreService {
     );
   }
 
-  getTicketByEmail(email: string): Observable<Ticket[]> {
+  getTicketsByEmail(email: string): Observable<Ticket[]> {
     return this.getAll('ingressos').pipe(
       map(objs => {
         return objs.filter(obj => obj.participante.email === email);

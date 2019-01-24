@@ -23,7 +23,7 @@ export class ListarIngressosComponent implements OnInit {
     this.auth.loggedUser$.subscribe(user => {
       if (user) {
         this.loggedUser = user;
-        this.firestore.getTicketByEmail(user.email).subscribe(tickets => this.tickets = tickets);
+        this.firestore.getTicketsByEmail(user.email).subscribe(tickets => this.tickets = tickets);
       }
     });
   }
