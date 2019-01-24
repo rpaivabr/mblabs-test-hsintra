@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Location, DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -17,8 +18,6 @@ export class CadastroUsuarioComponent implements OnInit {
   cadastrar = false;
 
   constructor(private location: Location,
-    private datePipe: DatePipe,
-    private route: ActivatedRoute,
     private router: Router,
     private firestore: FirestoreService,
     private auth: AuthService) { }

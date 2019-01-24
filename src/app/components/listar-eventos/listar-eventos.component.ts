@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
+
+import { FirestoreService } from '../../services/firestore.service';
+import { AuthService } from '../../services/auth.service';
+import { Event } from '../../models/event';
+import { User } from '../../models/user';
+import { Ticket } from '../../models/ticket';
 
 @Component({
   selector: 'app-listar-eventos',
@@ -9,24 +14,29 @@ import { Router } from '@angular/router';
 })
 export class ListarEventosComponent implements OnInit {
 
-  events = [];
-  user: any = {};
+  events: Event[] = [];
+  loggedUser: User;
 
   constructor(private firestore: FirestoreService,
+              private auth: AuthService,
               private router: Router) { }
 
   ngOnInit() {
     this.firestore.getEventsByDate().subscribe(events => this.events = events);
-    this.firestore.getByEmail('r.paivabr@gmail.com', 'usuarios').subscribe(user => this.user = user);
+    this.auth.loggedUser$.subscribe(user => {
+      if (user) {
+        this.firestore.getByEmail(user.email, 'usuarios').subscribe(loggedUser => this.loggedUser = loggedUser);
+      }
+    });
   }
 
   createTicket(event) {
-    console.log(event);
-    const ticket: any = {};
-    ticket.uid = this.firestore.getUid();
-    ticket.evento = event;
-    ticket.participante = this.user;
-    ticket.situacao = 'valido';
+    const ticket: Ticket = {
+      uid: this.firestore.getUid(),
+      evento: event,
+      participante: this.loggedUser,
+      situacao: 'valido'
+    };
     this.firestore.add(ticket, 'ingressos').subscribe(() => this.router.navigate(['eventos']));
   }
 

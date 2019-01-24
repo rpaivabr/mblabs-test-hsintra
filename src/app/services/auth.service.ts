@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { from, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { FirestoreService } from './firestore.service';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ import { FirestoreService } from './firestore.service';
 export class AuthService {
 
   user$: Observable<firebase.User>;
-  adminUser$: Observable<any>;
-  loggedUser$: Observable<any>;
+  adminUser$: Observable<User>;
+  loggedUser$: Observable<User>;
 
   constructor(private afAuth: AngularFireAuth,
               private firestore: FirestoreService,
