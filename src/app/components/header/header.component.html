@@ -1,37 +1,35 @@
 <header class="main-header">
   <nav class="navbar navbar-static-top">
     <div class="container">
-      <div class="navbar-header pull-left">
-        <a routerLink="/" class="navbar-brand"><b>HS</b>Intra</a>
-      </div>
+      
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="pull-left">
-        <ul class="nav navbar-nav">
-          <!-- <li routerLinkActive="active"><a routerLink="/home">Home </a></li> -->
-          <li class="dropdown" routerLinkActive="active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a routerLink="/eventos/cadastro">Cadastrar Evento</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+          <div class="navbar-header">
+              <a routerLink="/" class="navbar-brand"><b>HS</b>Intra</a>
+            </div>
       </div>
       <!-- /.navbar-collapse -->
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu pull-right">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
+
+          <li *ngIf="admin" routerLinkActive="active">
+            <!-- Menu toggle button -->
+            <a routerLink="/eventos/cadastro">
+              <i class="fa fa-users"></i>
+              <span class="label label-success">+</span>
+              <span class="hidden-xs">Adicionar Evento</span>
+            </a>
+          </li>
           <li *ngIf="user" routerLinkActive="active">
             <!-- Menu toggle button -->
             <a routerLink="/ingressos">
               <i class="fa fa-ticket"></i>
-              <span class="label label-success">{{ tickets !== 0 ? tickets : '' }}</span>
+              <span class="label label-warning">{{ tickets !== 0 ? tickets : '' }}</span>
               <span class="hidden-xs">Meus Ingressos</span>
             </a>
           </li>
-          <!-- /.messages-menu -->
+
 
 
           <!-- User Account Menu -->
