@@ -4,7 +4,7 @@ export interface User {
     email: string;
     sexo: string;
     cpf: string;
-    datanasc: Date;
+    datanasc: any;
     perfil: string;
     authUid: string;
 }

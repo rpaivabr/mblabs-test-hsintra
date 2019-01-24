@@ -34,7 +34,10 @@ export class ListarEventosComponent implements OnInit {
 
   createTicket(event: Event) {
     if (this.loggedUser) {
+      // se não estiver logado (vai para tela de login)
       const hasTicket = this.tickets.filter(t => t.evento.uid === event.uid)[0];
+
+      // se não tiver comprado ainda (vai para tela dos meus ingressos)
       if (!hasTicket) {
         const ticket: Ticket = {
           uid: this.firestore.getUid(),
@@ -44,6 +47,7 @@ export class ListarEventosComponent implements OnInit {
         };
         this.firestore.add(ticket, 'ingressos').subscribe(() => this.router.navigate(['ingressos']));
       }
+      // se tiver comprado já (acontece "vários nadas!")
     } else {
       this.router.navigate(['usuarios', 'cadastro']);
     }
