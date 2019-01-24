@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
       if (user) {
         this.user = user;
         this.firestore.getTicketsByEmail(user.email).subscribe(tickets => this.tickets = tickets.length);
+        console.log(user);
       }
     });
     this.auth.adminUser$.subscribe(admin => {

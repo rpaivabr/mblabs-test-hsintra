@@ -1,18 +1,14 @@
 <header class="main-header">
   <nav class="navbar navbar-static-top">
     <div class="container">
-      <div class="navbar-header">
+      <div class="navbar-header pull-left">
         <a routerLink="/" class="navbar-brand"><b>HS</b>Intra</a>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-          <i class="fa fa-bars"></i>
-        </button>
       </div>
-
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+      <div class="pull-left">
         <ul class="nav navbar-nav">
-          <li routerLinkActive="active"><a routerLink="/home">Home </a></li>
-          <li class="dropdown" routerLinkActive="active" *ngIf="admin">
+          <!-- <li routerLinkActive="active"><a routerLink="/home">Home </a></li> -->
+          <li class="dropdown" routerLinkActive="active">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li>
@@ -24,7 +20,7 @@
       </div>
       <!-- /.navbar-collapse -->
       <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
+      <div class="navbar-custom-menu pull-right">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li *ngIf="user" routerLinkActive="active">
@@ -32,23 +28,22 @@
             <a routerLink="/ingressos">
               <i class="fa fa-ticket"></i>
               <span class="label label-success">{{ tickets !== 0 ? tickets : '' }}</span>
-              Meus Ingressos
+              <span class="hidden-xs">Meus Ingressos</span>
             </a>
           </li>
           <!-- /.messages-menu -->
 
 
           <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" *ngIf="user" (click)="logout($event)">
-              <!-- The user image in the navbar-->
-              <img src="assets/img/M.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{user?.nome?.split(' ')[0].toUpperCase() }}</span>
+          <li class="user user-menu" *ngIf="user">
+            <a href="#" (click)="logout($event)">
+              <img src="assets/img/{{user?.sexo}}.png" class="user-image" alt="User Image">
+              {{user?.nome?.split(' ')[0].toUpperCase() }}
             </a>
-            <a routerLink="/usuarios/cadastro" class="dropdown-toggle" data-toggle="dropdown" *ngIf="!user">
-              <!-- The user image in the navbar-->
-              <span class="hidden-xs">Login</span>
+          </li>
+          <li class="user user-menu" *ngIf="!user">
+            <a routerLink="/usuarios/cadastro">
+              Login
             </a>
           </li>
         </ul>
