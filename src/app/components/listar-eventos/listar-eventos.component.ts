@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-eventos',
@@ -8,17 +9,25 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class ListarEventosComponent implements OnInit {
 
-  users = [];
-  datanasc;
+  events = [];
+  user: any = {};
 
-  constructor(private firestore: FirestoreService) { }
+  constructor(private firestore: FirestoreService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.firestore.getAll('usuarios').subscribe(users => {
-      this.users = users;
-      this.datanasc = new Date(users[0].datanasc.seconds * 1000);
-      console.log(this.datanasc);
-    });
+    this.firestore.getEventsByDate().subscribe(events => this.events = events);
+    this.firestore.getByEmail('r.paivabr@gmail.com', 'usuarios').subscribe(user => this.user = user);
+  }
+
+  createTicket(event) {
+    console.log(event);
+    const ticket: any = {};
+    ticket.uid = this.firestore.getUid();
+    ticket.evento = event;
+    ticket.participante = this.user;
+    ticket.situacao = 'valido';
+    this.firestore.add(ticket, 'ingressos').subscribe(() => this.router.navigate(['eventos']));
   }
 
 }

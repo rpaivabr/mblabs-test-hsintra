@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   constructor(private firestore: FirestoreService) {}
 
   ngOnInit() {
-    this.firestore.getAll('ingressos').subscribe(ingressos => {
-      this.ingressos = ingressos;
-      this.firestore.getById(ingressos[0].evento, 'eventos').subscribe(evento => this.ingressos[0].evento = evento);
-    });
+    // this.firestore.getAll('ingressos').subscribe(ingressos => {
+    //   this.ingressos = ingressos;
+    //   this.firestore.getById(ingressos[0].evento, 'eventos').subscribe(evento => this.ingressos[0].evento = evento);
+    // });
   }
 
 }

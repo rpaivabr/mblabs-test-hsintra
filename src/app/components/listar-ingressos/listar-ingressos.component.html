@@ -1,0 +1,33 @@
+<!-- {{ users[0].datanasc.seconds * 1000 | date : 'dd/MM/yyyy' }} -->
+<div class="container">
+  <section class="content-header">
+    <h1>Meus Ingressos ({{tickets.length}})</h1>
+  </section>
+  <section class="content">
+
+    <div class="row">
+      <div class="col-lg-6 col xs-12" *ngFor="let ticket of tickets">
+        <div class="box box-info" [class.used]="ticket.situacao === 'utilizado'">
+          <div class="box-header with-border">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                  <qrcode [qrdata]="ticket.uid" [size]="110" [level]="'M'" colordark="#120a8f" 
+                  [colorlight]="ticket.situacao === 'utilizado' ? '#ddd' : '#fff'" id="qr"></qrcode>
+                </div>
+                <div class="col-lg-9 col-xs-6">
+                  Evento: {{ ticket.evento.nome }}<br>
+                  Local: {{ ticket.evento.local }}<br>
+                  Data: {{ ticket.evento.data.seconds * 1000 | date : 'dd/MM/yyyy' }}<br>
+                  Hora: {{ ticket.evento.data.seconds * 1000 | date : 'HH:mm' }}<br>
+                  Situação: {{ ticket.situacao }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

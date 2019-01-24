@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CadastroUsuarioComponent implements OnInit {
 
   userForm: FormGroup;
+  loginForm: FormGroup;
+  cadastrar = false;
 
   constructor(private location: Location,
     private datePipe: DatePipe,
@@ -22,17 +24,28 @@ export class CadastroUsuarioComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      loginEmail: new FormControl('', [Validators.required, Validators.email]),
+      loginPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
     this.userForm = new FormGroup({
       nome: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       datanasc: new FormControl(''),
       sexo: new FormControl('M'),
+      cpf: new FormControl(''),
     });
   }
 
   goBack() {
     this.location.back();
+  }
+
+  login() {
+    this.auth.login(this.loginForm.value.loginEmail, this.loginForm.value.loginPassword).subscribe(user =>
+      this.router.navigate(['ingressos'])
+    );
   }
 
   createUser() {

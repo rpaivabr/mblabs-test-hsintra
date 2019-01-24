@@ -1,0 +1,11 @@
+#qr > canvas {
+    margin: 0 auto;
+}
+
+#qr > img {
+    margin: 0 auto;
+}
+
+.used {
+    background-color: #ddd; 
+}
